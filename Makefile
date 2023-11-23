@@ -1,8 +1,7 @@
 # Docker image settings
 IMAGE_NAME := go-hello-world
-VERSION := latest
 QUAY_REPO := quay.io/keranyang/go-hello-world
-TAG := latest
+TAG := v1.0.0
 
 # Build the Docker image
 build:
