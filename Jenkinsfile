@@ -20,7 +20,7 @@ pipeline {
             steps {
                 // Deploy to Kubernetes using kubectl
                 script {
-                    sh "kubectl apply -f path/to/your/deployment.yaml"
+                    sh "kubectl apply -f kubernetes/deployment.yaml"
                 }
             }
         }
