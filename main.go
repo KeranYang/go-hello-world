@@ -1,8 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 func main() {
-    fmt.Println("KeranYang - Hello, World!")
+	// create a ticker to print "Hello, World!" every second
+	ticker := time.NewTicker(1 * time.Second)
+	for t := range ticker.C {
+		fmt.Println("KeranYang - Hello, World!", t)
+	}
 }
-
