@@ -16,11 +16,27 @@ pipeline {
             }
         }
 
-        stage('Deploy to Kubernetes') {
+        stage('Deploy to Kubernetes and Test') {
             steps {
-                // Deploy to Kubernetes using kubectl
                 script {
+                    // Deploy the application to Kubernetes
                     sh "kubectl apply -f kubernetes/deployment.yaml"
+
+                    // Wait for the deployment to be ready
+                    sh "kubectl rollout status deployment/go-hello-world --timeout=2m"
+
+                    // Get the pod name
+                    POD_NAME = sh(returnStdout: true, script: "kubectl get pods -l app=go-hello-world -o jsonpath='{.items[0].metadata.name}'").trim()
+
+                    // Check the output of the pod
+                    def podOutput = sh(returnStdout: true, script: "kubectl logs $POD_NAME").trim()
+
+                    // Validate the output
+                    if (podOutput == "KeranYang - Hello, World!") {
+                        echo "Pod output is valid"
+                    } else {
+                        error "Pod output is invalid"
+                    }
                 }
             }
         }
