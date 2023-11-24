@@ -32,7 +32,7 @@ pipeline {
                     def podOutput = sh(returnStdout: true, script: "kubectl logs $POD_NAME").trim()
 
                     // Validate the output
-                    if (podOutput.contains("ChloeDai - Hello, World!")) {
+                    if (podOutput.contains("Keran - Hello, World!")) {
                         echo "Pod output is valid"
                     } else {
                         error "Pod output is invalid"

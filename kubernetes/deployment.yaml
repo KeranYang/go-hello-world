@@ -14,8 +14,6 @@ spec:
     spec:
       containers:
       - name: go-hello-world
-        image: quay.io/keranyang/go-hello-world:v1.0.0
+        image: quay.io/keranyang/go-hello-world:v1.0.1
         imagePullPolicy: Always
-        ports:
-        - containerPort: 8787
 
